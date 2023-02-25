@@ -1,5 +1,7 @@
-# 1. 2019, Point Voxel
-用voxel 操作近似 找每个点邻域内的点的操作。
+# 1. 2019, [Point Voxel](../../2022-paper-notes/3d-detection/singleframe/2019-NeurlIPS-PVCNN.pdf)
+* 用voxel 操作近似 找每个点邻域内的点的操作。
+* 用处是给点云feature加上邻域feature。
+
 ## 1.1. Abstract
 
 1. MIT
@@ -39,10 +41,13 @@
 6. relu + bn
 7. assign point in voxel same feature -> trilinear interpolation -> point feature
 8. point -> MLP -> point feature
-9. feature fusion?
+9. feature fusion? 接入F-Point++ 的检测头。
 
 ## 1.6. Advantage
 1. Efficiency: better data locality regularity: O(N) point access
 2. compare: PointNet++ O(kN) k=32/64
 3. compare PointCNN k=16
 4. Effective keeping points in high res
+
+## Speed
+1. on xavier, point net 70 obj/s , ours 130 obj/s
