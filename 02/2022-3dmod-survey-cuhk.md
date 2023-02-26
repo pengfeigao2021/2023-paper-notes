@@ -60,3 +60,46 @@
 16. chooose voxel size: smaller - memory comsumption
 
 ## Point voxel based
+1. 1-stage: voxel - head point -head
+2. 2-stage: voxel - box - key point - ROI grid pooling - box refine
+3. 1-stage: featuers bridge - backbone
+4. 2-stage: PVRCNN - improve 2nd: RefinerNet, VectorPool, point wise attention scale aware pooling ROI grid attention channel wise Transformer, point density aware refinement module.
+5. p&c: time cost in point voxel fusion. effientyly aggregate point. increase infer time
+
+## Range based 3d det
+1. dense image 2d 
+2. pixel - distance info - not RGB
+3. sutable view for det
+4. conv, range dilated conv, meta/graph kernel conv, tranform BEV, transform point view
+5. 2d: LaserNet, DLA-Net, U-Net, RPN,FPN
+6. Range ops: pixels may be far away each other. dilated conv, graph op, meta kernel conv.
+7. views: cylindrical view, range view, bev, pv
+8. [latter experiment, improve close range yaw?]range view: vulnerable to occlusion and scale variaation. practical: det in BEV, feature in range view.
+
+## Learning objective
+1. anchor: 3d fix size
+2. anchor loss: VoxelNet
+3. anchor loss: binary cross entropy
+4. BCE: $L=-[qlog(p)+(1-q)*log(1-p)]$ q=1,0, p = $\hat{p}$
+5. Focal loss: $L=-\alpha(1-p)^\gamma log(p)$ $\alpha=0.25$ $\gamma=2$
+6. anchor gt: $\Delta x = \frac{x^g-x^a}{d^a}$
+7. gt: $\Delta l = log(\frac{l^g}{l^a})$
+8. reg smoothL1 loss
+9. anchor heading: radian smooth l1, gt: $\theta^g - \theta^a$
+10. anchor heading: bin head $L=L_{dir}+smoothL1(\theta - \Delta \theta')$
+11. anchor heading: sin/cos
+12. IOU loss: $L_{IOU}=1-IOU$
+13. Corner loss: $L=\sum||c^g - c||$ 8 corners
+14. bad: large number of anchors: 7w for KITTI
+
+## anchor free
+1. select of positive and negative samples
+2. grid based, point based, range based, set to set assignment
+3. grid: PIXOR
+4. grid: cetner point, smoothL1 loss reg
+5. point: raw point segment + centerness score
+6. range-based: range pixel inside box  = positive
+7. set-to-set: DETR - 2d det - hungarian matching
+8. chanllenge: select bad positive samples?
+   
+## 3d auxiliary task
