@@ -103,3 +103,12 @@
 8. chanllenge: select bad positive samples?
    
 ## 3d auxiliary task
+1. semantic seg, iou prediction, obj shape completion, obj part estimation.
+2. predict iou: $S_{conf} = S_{cls}$ 
+3.  $S_{conf} = S_{cls} (S_{IOU})^\beta$
+4.  obj shape completion: shape decoder, prob occupancy grid
+5.  obj part estimation
+
+## lidar seq
+1. attention, LSTM, Graph, Transformer
+2. single frame det -> extract features from multiple frames -> ROI feature - temporal attention - convGRU - graph net - LSTM - Transformer.
