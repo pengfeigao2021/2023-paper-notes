@@ -28,7 +28,7 @@ PointNet
 4. h = MLP
 
 
-Hierarchical
+## Hierarchical
 1. point net = max pooling
 2. larger and larger region
 3. set abstraction
@@ -40,7 +40,7 @@ Hierarchical
 9. distance: metric (pos + feature)
 10. grouping: d metric distance neighbor
 
-non-uniform sampling
+## non-uniform sampling
 1. adaptive point net
 2. combine different scale
 3. MSG MRG
@@ -49,7 +49,7 @@ non-uniform sampling
 6. MRG: resolution: solve large local neighbor issue
 7. MRG: set abstraction on Li-1 concat point net on raw points
 
-propagation
+## propagation
 1. set abstration
 2. pointset subsampled
 3. point segmentation: propagate subsampled - original feature

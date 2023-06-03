@@ -44,7 +44,7 @@ def convert(inpath):
                     file_title = line
                     title = line
                 else:
-                    title = file_title + line
+                    title = file_title + '\n\n' + line
                 qapair[0] = title
                 qapair[1] = ''
             else:
