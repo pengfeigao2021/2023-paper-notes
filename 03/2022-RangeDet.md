@@ -6,7 +6,7 @@
 
 
 ## Methods
-1. 3 component： 1FPN-range, 2meta-conv, 3w-NMS
+1. 3 component： 1. FPN learn range, 2meta-conv, 3. weighted-NMS
 2. weighted NMS: prop in full resolution
 3. weighetd NMS: filter out < 0.5, weighted average of all box IOU >0.5 with b0
    
