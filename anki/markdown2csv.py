@@ -33,13 +33,19 @@ def is_title(line):
 def convert(inpath):
     result = []
     with open(inpath, 'r') as fin:
+        file_title = ''
         qapair = ['[Blank]', '[Blank]']
         for line in fin:
             line = line.strip('\r\n ')
             if is_title(line):
                 if qapair[0] != '[Blank]':
                     result.append(copy.deepcopy(qapair))
-                qapair[0] = line
+                if len(file_title) == 0:
+                    file_title = line
+                    title = line
+                else:
+                    title = file_title + line
+                qapair[0] = title
                 qapair[1] = ''
             else:
                 qapair[1] += line + '\n'
