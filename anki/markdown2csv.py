@@ -55,6 +55,16 @@ def convert(inpath):
         
     return result
             
+
+def dumpcsv(outpath, all_notes):
+    html_notes = []
+    for row in all_notes:
+        html_notes.append([col.replace('\n', '<br>').replace("#", "") for col in row])
+            
+    with open(outpath, 'w') as fout:
+        wt = csv.writer(fout)
+        wt.writerows(html_notes)
+
 def main():
     args = parse_args()
     print(os.path.basename(args.i))
@@ -63,10 +73,10 @@ def main():
     for p in tqdm.tqdm(files):
         res = convert(p)
         all_notes.extend(res)
+        singleoutpath = p+'.csv'
+        dumpcsv(singleoutpath, res)
 
-    with open(args.o, 'w') as fout:
-        wt = csv.writer(fout)
-        wt.writerows(all_notes)
+    dumpcsv(args.o, all_notes)
         
     print('done.')
 
